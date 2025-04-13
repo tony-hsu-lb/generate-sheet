@@ -322,7 +322,7 @@ export default function Home() {
 		// Create a link element
 		const link = document.createElement('a');
 		// Set the href to the example sheet in the public folder
-		link.href = '/example-sheet.xlsx';
+		link.href = '/assets/example-sheet.xlsx';
 		// Set download attribute to specify the file name
 		link.download = 'example-sheet.xlsx';
 		// Add to document body
