@@ -115,12 +115,31 @@ export default function Home() {
 		fileInputRef.current?.click();
 	};
 
+	const loadCustomFont = async () => {
+		// Load custom font
+		const fontFace = new FontFace(
+			'GenSenRounded2TW-H',
+			`url('/fonts/GenSenRounded2TW-H.otf')`
+		);
+
+		// Wait for font to load
+		await fontFace.load();
+		// Add font to document's font list
+		document.fonts.add(fontFace);
+
+		// Ensure font is loaded
+		await document.fonts.ready;
+	};
+
 	const generateImagesAndZip = async () => {
 		if (!backgroundImage || excelData.length === 0) return;
 
 		setIsGenerating(true);
 
 		try {
+			// Load custom font
+			await loadCustomFont();
+
 			const zip = new JSZip();
 
 			// For each row in excelData, create a new image
@@ -228,7 +247,7 @@ export default function Home() {
 						'black', // fill color
 						'white', // stroke color
 						8, // stroke width
-						"bold 130px 'Noto Sans TC', sans-serif"
+						"bold 130px 'GenSenRounded2TW-H', sans-serif"
 					);
 				}
 
@@ -238,10 +257,10 @@ export default function Home() {
 						row['name'],
 						220,
 						820,
-						'#FFD700', // Yellow fill
+						'rgb(255, 239, 61)', // Yellow fill
 						'black', // black stroke
 						10, // stroke width
-						"bold 240px 'Noto Sans TC', sans-serif"
+						"bold 240px 'GenSenRounded2TW-H', sans-serif"
 					);
 				}
 
@@ -254,7 +273,7 @@ export default function Home() {
 						'black', // fill color
 						'white', // stroke color
 						5, // stroke width
-						"bold 90px 'Noto Sans TC', sans-serif"
+						"bold 90px 'GenSenRounded2TW-H', sans-serif"
 					);
 				}
 
@@ -286,7 +305,7 @@ export default function Home() {
 							'black', // fill color
 							'white', // stroke color
 							2, // stroke width
-							"24px 'Noto Sans TC', sans-serif"
+							"24px 'GenSenRounded2TW-H', sans-serif"
 						);
 					}
 				});
